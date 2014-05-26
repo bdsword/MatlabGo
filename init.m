@@ -1,0 +1,3 @@
+chessBoard
+curPlayer
+settings
