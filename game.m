@@ -99,8 +99,13 @@ curY = cursorPoint(1,2);
 [x,y] = coordinateConvert(curX,curY);
 if x>0 && y>0
     curPlayer = getCurrentPlayer();
-    if setChess(x,y,curPlayer)==false
+    if setChess([x,y],curPlayer)==false
         return;
+    end
+    takenChess = takeChess(x,y);
+    takenChess
+    if ~isempty(takenChess)
+        unsetChess(takenChess);
     end
     updateChessBoard();
     nextTurn();

@@ -13,7 +13,7 @@ global dismiss;
 dismiss=10;
 
 global chessRadius;
-chessRadius=20;
+chessRadius=40;
 
 global chessBoardSize;
 chessBoardSize=19;
