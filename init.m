@@ -1,3 +1,4 @@
 chessBoard
 curPlayer
 settings
+history

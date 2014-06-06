@@ -22,7 +22,7 @@ function varargout = game(varargin)
 
 % Edit the above text to modify the response to help game
 
-% Last Modified by GUIDE v2.5 25-May-2014 12:29:17
+% Last Modified by GUIDE v2.5 30-May-2014 14:27:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -102,12 +102,23 @@ if x>0 && y>0
     if setChess([x,y],curPlayer)==false
         return;
     end
+    writeToHistory([x,y,1]);
     takenChess = takeChess(x,y);
-    takenChess
     if ~isempty(takenChess)
         unsetChess(takenChess);
+        chessLog = logMaker(takenChess, 2);
+        chessLog
+        writeToHistory(chessLog);
     end
+    
+    global history;
+    history
+    
     updateChessBoard();
     nextTurn();
 end
 
+
+% --- Executes on button press in undoButton.
+function undoButton_Callback(hObject, eventdata, handles)
+    writeHistoryToFile();
