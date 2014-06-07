@@ -21,7 +21,6 @@ function takenChess = takeChess( x, y )
             return;
         end
         if chessBoard(nowX,nowY)==0
-            dirTakenChess=[];
             liberty = liberty+1;
             return;
         end
