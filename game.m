@@ -102,13 +102,13 @@ if x>0 && y>0
     if setChess([x,y],curPlayer)==false
         return;
     end
-    writeToHistory([x,y,1]);
+    writeToHistory([x,y,curPlayer,1]);
     takenChess = takeChess(x,y);
     if ~isempty(takenChess)
-        unsetChess(takenChess);
         chessLog = logMaker(takenChess, 2);
         chessLog
         writeToHistory(chessLog);
+        unsetChess(takenChess);
     end
     
     global history;
@@ -121,4 +121,4 @@ end
 
 % --- Executes on button press in undoButton.
 function undoButton_Callback(hObject, eventdata, handles)
-    writeHistoryToFile();
+    % writeHistoryToFile();

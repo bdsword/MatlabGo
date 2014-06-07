@@ -14,7 +14,7 @@ function writeHistoryToFile()
     end
     for i=1:size(history,2)
         for j=1:size(history{i},1)
-            fprintf(fileID,'%d %d %d\n',history{i}(j,1),history{i}(j,2),history{i}(j,3));
+            fprintf(fileID,'%d %d %d %d\n',history{i}(j,1),history{i}(j,2),history{i}(j,3),history{i}(j,4));
         end
     end
     fclose(fileID);
