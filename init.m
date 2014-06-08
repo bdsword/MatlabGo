@@ -2,3 +2,4 @@ chessBoard
 curPlayer
 settings
 history
+ko

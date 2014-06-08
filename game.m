@@ -100,20 +100,16 @@ curY = cursorPoint(1,2);
 if x>0 && y>0
     curPlayer = getCurrentPlayer();
     if setChess([x,y],curPlayer)==false
+        msgbox('This position is not allowed to set chess!','modal');
         return;
     end
     writeToHistory([x,y,curPlayer,1]);
     takenChess = takeChess(x,y);
     if ~isempty(takenChess)
         chessLog = logMaker(takenChess, 2);
-        chessLog
         writeToHistory(chessLog);
         unsetChess(takenChess);
     end
-    
-    global history;
-    history
-    
     updateChessBoard();
     nextTurn();
 end

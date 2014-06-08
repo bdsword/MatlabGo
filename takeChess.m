@@ -9,18 +9,19 @@ function takenChess = takeChess( x, y )
     attackColor = chessBoard(x,y);
     
     for i=1:4
-        alived = false;
+        liberty = 0;
         dirTakenChess = [];
         takeChessRecursive(x+direction(i,1),y+direction(i,2));
-        takenChess = [takenChess;dirTakenChess];
+        if liberty==0
+            takenChess = [takenChess;dirTakenChess];
+        end
     end
     function takeChessRecursive( nowX, nowY)
-        if alived==true || nowX>19 || nowY>19 || nowX<1 || nowY<1
+        if nowX>19 || nowY>19 || nowX<1 || nowY<1
             return;
         end
         if chessBoard(nowX,nowY)==0
-            dirTakenChess=[];
-            alived = true;
+            liberty = liberty+1;
             return;
         end
         if walkedChess(nowX,nowY)~=1 && ...

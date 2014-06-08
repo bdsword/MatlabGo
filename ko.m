@@ -1,0 +1,2 @@
+global koLogger;
+koLogger=[];
