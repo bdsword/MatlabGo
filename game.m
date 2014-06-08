@@ -43,7 +43,7 @@ passImhandles = image(picPass,'parent',handles.axesPass);
 set(handles.axesPass,'xtick',[],'ytick',[]);
 set(passImhandles, 'ButtonDownFcn', @pass_ClickFcn);
 
-picLog = imread('save.png');
+picLog = imread('Save.png');
 logImhandles = image(picLog,'parent',handles.axesLog);
 set(handles.axesLog,'xtick',[],'ytick',[]);
 set(logImhandles, 'ButtonDownFcn', @log_ClickFcn);
@@ -52,13 +52,10 @@ picUndo = imread('regret.png');
 undoImhandles = image(picUndo,'parent',handles.axesUndo);
 set(handles.axesUndo,'xtick',[],'ytick',[]);
 set(undoImhandles, 'ButtonDownFcn', @undo_ClickFcn);
-
-
 %------------------
 
 handles.chessBoard = imageHandle;
 guidata(hObject, handles);
-
 
 
 function varargout = game_OutputFcn(hObject, eventdata, handles) 
@@ -66,9 +63,8 @@ varargout{1} = handles.output;
 
 
 function undoButton_Callback(hObject, eventdata, handles)
-    % writeHistoryToFile();
     if undo()~=false
-        updateChessBoard();
+        updateChessBoard(handles.chessPaintBoard);
     end
     
 function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
@@ -88,7 +84,7 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
         if ~isempty(takenChess)
             unsetChess(takenChess);
         end
-        updateChessBoard();
+        updateChessBoard(handles.chessPaintBoard);
         nextTurn();
     end
 
@@ -157,11 +153,10 @@ writeHistoryToFileSgf();
 
 function undo_ClickFcn(hObject, eventdata)
 
-handles = guidata(hObject);
-% undo
- % writeHistoryToFile();
+    handles = guidata(hObject);
+    
     if undo()~=false
-        updateChessBoard();
+        updateChessBoard(handles.chessPaintBoard);
     end
 
 %======================================

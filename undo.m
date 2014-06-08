@@ -15,7 +15,6 @@ function result = undo()
     clearChessBoard();
     
     global chessBoard;
-    size(history,2)
     for i=1:size(history,2)
         x=history{i}(1,1);
         y=history{i}(1,2);
