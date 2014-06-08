@@ -22,7 +22,7 @@ function varargout = startpage(varargin)
 
 % Edit the above text to modify the response to help startpage
 
-% Last Modified by GUIDE v2.5 07-Jun-2014 12:13:22
+% Last Modified by GUIDE v2.5 09-Jun-2014 02:40:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,11 +78,15 @@ con_imhandles = image(pic_con,'parent',handles.axes_con);
 set(handles.axes_con,'xtick',[],'ytick',[]);
 set(con_imhandles, 'ButtonDownFcn', @con_ClickFcn);
 
-pic_grade = imread('button_grade.png');
+pic_grade = imread('button_grade.png');%排行榜
 grade_imhandles = image(pic_grade,'parent',handles.axes_grade);
 set(handles.axes_grade,'xtick',[],'ytick',[]);
 set(grade_imhandles, 'ButtonDownFcn', @grade_ClickFcn);
 
+pic_log = imread('button_history.png');
+log_imhandles = image(pic_log,'parent',handles.axes_log);
+set(handles.axes_log,'xtick',[],'ytick',[]);
+set(log_imhandles, 'ButtonDownFcn', @log_ClickFcn);
 
 pic_quit = imread('button_quit.png');
 quit_imhandles = image(pic_quit,'parent',handles.axes_quit);
@@ -107,6 +111,7 @@ handles = guidata(hObject);
 delete(handles.axes_start)
 delete(handles.axes_con)
 delete(handles.axes_grade)
+delete(handles.axes_log)
 delete(handles.axes_quit)
 %-------choose play mode-------
 axesm1_h = axes('Units','pixels','Position',[40 150 150 180])
@@ -138,9 +143,9 @@ set(m3_imh, 'ButtonDownFcn', @m3_ClickFcn);
 function con_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-[FileName,PathName] = uigetfile('*.fig','Select the GO chess file');
+[FileName,PathName] = uigetfile('*.sfg','Select the GO chess file');
 if FileName~=0
-    % open the record
+    % open the record　and enter play mode
     disp(FileName)
 else
    warndlg('the file not exist or error','Error choosing file','modal')
@@ -149,18 +154,29 @@ end
 function grade_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-%imshow('002.jpg','parent',handles.axes_quit)
+%imshow('002.jpg','parent',handles.axes_log)
 delete(handles.axes_start)
 delete(handles.axes_con)
 delete(handles.axes_grade)
+delete(handles.axes_log)
 delete(handles.axes_quit)
+
+function log_ClickFcn(hObject, eventdata)
+
+handles = guidata(hObject);
+[FileName,PathName] = uigetfile('*.sfg','Select the GO chess file');
+if FileName~=0
+    % open the record　and enter log mode
+    disp(FileName)
+else
+   warndlg('the file not exist or error','Error choosing file','modal')
+end
 
 function quit_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-% [sound_vector, sf] = wavread('C:\windows\media\Afternoon\Windows 開香檳.wav');
-% wavplay(sound_vector, sf)
-close(gcf)
+close(handles.figure1)
+
 %==================================================
 
 %=======click start to choose mode=====
