@@ -1,13 +1,13 @@
 function updateChessBoard()
     global chessBoard;
     global chessRadius;
-    global chessHandles;
+    cla;
     for i=1:19
         for j=1:19
-            if chessBoard(i,j)==1&&chessHandles(i,j)==0
-                chessHandles(i,j)=circle(i,j,chessRadius,[0,0,0]);
-            elseif chessBoard(i,j)==2&&chessHandles(i,j)==0
-                chessHandles(i,j)=circle(i,j,chessRadius,[1,1,1]);
+            if chessBoard(i,j)==1
+                circle(i,j,chessRadius,[0,0,0]);
+            elseif chessBoard(i,j)==2
+                circle(i,j,chessRadius,[1,1,1]);
             end
         end
     end
