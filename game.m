@@ -122,3 +122,5 @@ end
 % --- Executes on button press in undoButton.
 function undoButton_Callback(hObject, eventdata, handles)
     % writeHistoryToFile();
+    undo();
+    undo();
