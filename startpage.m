@@ -66,7 +66,6 @@ image(pic_bg,'parent',handles.axes_bg)
 set(handles.axes_bg,'xtick',[],'ytick',[]);
  
 
-
 %--- four image button and set button----
 pic_start = imread('button_start.png');
 start_imhandles = image(pic_start,'parent',handles.axes_start);
@@ -106,7 +105,6 @@ varargout{1} = handles.output;
 
 %==========click function of four image button=================
 function start_ClickFcn(hObject, eventdata)
-
 handles = guidata(hObject);
 delete(handles.axes_start)
 delete(handles.axes_con)
@@ -115,15 +113,8 @@ delete(handles.axes_log)
 delete(handles.axes_quit)
 %-------choose play mode-------
 axesm1_h = axes('Units','pixels','Position',[40 150 150 180])
-% pic_m1 = imread('two player.png');
-% m1_imh = image(pic_m1,'parent',axesm1_h)
-% set(axesm1_h,'xtick',[],'ytick',[]);
-% set(m1_imh, 'ButtonDownFcn', @m1_ClickFcn);
-
-uniquebgcolor=[0 0 0]; % <- select a color that does not exist in your image!!!
-pic_m1 = imread('two player.png','BackgroundColor',uniquebgcolor);
-mask = bsxfun(@eq,pic_m1,reshape(uniquebgcolor,1,1,3));
-m1_imh = image(pic_m1,'parent',axesm1_h,'alphadata',1-double(all(mask,3)));
+pic_m1 = imread('two player.png');
+m1_imh = image(pic_m1,'parent',axesm1_h);
 set(axesm1_h,'xtick',[],'ytick',[]);
 set(m1_imh, 'ButtonDownFcn', @m1_ClickFcn);
 
@@ -149,8 +140,9 @@ if isequal(FileName,0)
 end
 filePath = strcat(PathName,FileName);
 history = readSgf(filePath);
+close(gcf);
 game(history);
-close(handles.figure1);
+
 
 
 function grade_ClickFcn(hObject, eventdata)
@@ -172,8 +164,8 @@ if isequal(FileName,0)
 end
 filePath = strcat(PathName,FileName);
 history = readSgf(filePath);
-checkhistory(history);
 close(handles.figure1);
+checkhistory(history);
 
 
 function quit_ClickFcn(hObject, eventdata)

@@ -17,47 +17,47 @@ function varargout = game(varargin)
     end
 
 function game_OpeningFcn(hObject, eventdata, handles, varargin)
-handles.output = hObject;
-init
-set(gcf,'CurrentAxes',handles.axes1);
-imageData = imread('ChessBoard.jpg');
-imageHandle = image(imageData);
-hold on;
-set(gca,'xtick',[],'ytick',[]);
-axis square;
-set(gcf,'CurrentAxes',handles.chessPaintBoard);
-set(handles.chessPaintBoard,'xtick',[],'ytick',[]);
-set(handles.chessPaintBoard,'color','none');
-axis square;
+    handles.output = hObject;
+    init
+    set(handles.figure1,'CurrentAxes',handles.axes1);
+    imageData = imread('ChessBoard.jpg');
+    imageHandle = image(imageData);
+    hold on;
+    set(gca,'xtick',[],'ytick',[]);
+    axis square;
+    set(gcf,'CurrentAxes',handles.chessPaintBoard);
+    set(handles.chessPaintBoard,'xtick',[],'ytick',[]);
+    set(handles.chessPaintBoard,'color','none');
+    axis square;
 
-% bg image
-pic_bg = imread('gamebg.png');
-image(pic_bg,'parent',handles.axes_gmbg)
-set(handles.axes_gmbg,'xtick',[],'ytick',[]);
+    % bg image
+    pic_bg = imread('gamebg.png');
+    image(pic_bg,'parent',handles.axes_gmbg)
+    set(handles.axes_gmbg,'xtick',[],'ytick',[]);
 
-%--- four image button and set button----
-picPass = imread('pass.png');
-passImhandles = image(picPass,'parent',handles.axesPass);
-set(handles.axesPass,'xtick',[],'ytick',[]);
-set(passImhandles, 'ButtonDownFcn', @pass_ClickFcn);
+    %--- four image button and set button----
+    picPass = imread('pass.png');
+    passImhandles = image(picPass,'parent',handles.axesPass);
+    set(handles.axesPass,'xtick',[],'ytick',[]);
+    set(passImhandles, 'ButtonDownFcn', @pass_ClickFcn);
 
-picLog = imread('Save.png');
-logImhandles = image(picLog,'parent',handles.axesLog);
-set(handles.axesLog,'xtick',[],'ytick',[]);
-set(logImhandles, 'ButtonDownFcn', @log_ClickFcn);
+    picLog = imread('Save.png');
+    logImhandles = image(picLog,'parent',handles.axesLog);
+    set(handles.axesLog,'xtick',[],'ytick',[]);
+    set(logImhandles, 'ButtonDownFcn', @log_ClickFcn);
 
-picUndo = imread('regret.png');
-undoImhandles = image(picUndo,'parent',handles.axesUndo);
-set(handles.axesUndo,'xtick',[],'ytick',[]);
-set(undoImhandles, 'ButtonDownFcn', @undo_ClickFcn);
-%------------------
+    picUndo = imread('regret.png');
+    undoImhandles = image(picUndo,'parent',handles.axesUndo);
+    set(handles.axesUndo,'xtick',[],'ytick',[]);
+    set(undoImhandles, 'ButtonDownFcn', @undo_ClickFcn);
+    %------------------
 
-handles.chessBoard = imageHandle;
-guidata(hObject, handles);
+    handles.chessBoard = imageHandle;
+    guidata(hObject, handles);
 
-if nargin>3
-    continueGame(varargin,gca);
-end
+    if nargin>3
+        continueGame(varargin,gca);
+    end
 
 
 function varargout = game_OutputFcn(hObject, eventdata, handles) 

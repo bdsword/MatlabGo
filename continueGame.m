@@ -14,6 +14,9 @@ function continueGame( chessLog, chessPaintBoard )
         end
     end
     setCurrentPlayer(history{end}(1,3));
+    if size(history,2)~=0
+        setLastStepChess([history{end}(1,1),history{end}(1,2)]);
+    end
     updateChessBoard(chessPaintBoard);
 end
 

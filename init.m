@@ -3,3 +3,4 @@ curPlayer
 settings
 history
 ko
+lastSetChess
