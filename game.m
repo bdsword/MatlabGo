@@ -82,7 +82,7 @@ function passButton_Callback(hObject, eventdata, handles)
         if strcmp(computer('arch'),'glnxa64') %linux
             system(sprintf('./gnugo-linux/gnugo --score aftermath -l %s > score',tmpLogName));
         elseif strcmp(computer('arch'),'win32') || strcmp(computer('arch'),'win64') %windows
-            system(sprintf('./gnugo-windows/gnugo.exe --score aftermath -l %s > score',tmpLogName));
+            system(sprintf('gnugo-windows\\gnugo.exe --score aftermath -l %s > score',tmpLogName));
         end
         fileID = fopen('score','r');
         if fileID<0
