@@ -83,6 +83,7 @@ grade_imhandles = image(pic_grade,'parent',handles.axes_grade);
 set(handles.axes_grade,'xtick',[],'ytick',[]);
 set(grade_imhandles, 'ButtonDownFcn', @grade_ClickFcn);
 
+
 pic_quit = imread('button_quit.png');
 quit_imhandles = image(pic_quit,'parent',handles.axes_quit);
 set(handles.axes_quit,'xtick',[],'ytick',[]);
@@ -137,14 +138,13 @@ set(m3_imh, 'ButtonDownFcn', @m3_ClickFcn);
 function con_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-delete(handles.axes_start)
-delete(handles.axes_con)
-delete(handles.axes_grade)
-delete(handles.axes_quit)
-close(handles.figure1)
 [FileName,PathName] = uigetfile('*.fig','Select the GO chess file');
-FileName
-
+if FileName~=0
+    % open the record
+    disp(FileName)
+else
+   warndlg('the file not exist or error','Error choosing file','modal')
+end
 
 function grade_ClickFcn(hObject, eventdata)
 
