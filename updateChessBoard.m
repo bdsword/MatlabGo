@@ -1,7 +1,8 @@
 function updateChessBoard(chessPaintBoard)
     global chessBoard;
     global chessRadius;
-    global history;
+    %global history;
+    global lastSetChess;
     cla(chessPaintBoard);
     oldGca=gca;
     set(gcf,'CurrentAxes',chessPaintBoard);
@@ -12,7 +13,7 @@ function updateChessBoard(chessPaintBoard)
             elseif chessBoard(i,j)==2
                 circle(i,j,chessRadius,[1,1,1],[0,0,0],'-',.5);
             end
-            if size(history,2)~=0 && history{end}(1,1)==i && history{end}(1,2)==j
+            if i==lastSetChess(1)&&j==lastSetChess(2)
                 circle(i,j,chessRadius,'none',[.1,.6,.2],'-',2);
             end
         end

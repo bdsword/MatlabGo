@@ -78,7 +78,7 @@ con_imhandles = image(pic_con,'parent',handles.axes_con);
 set(handles.axes_con,'xtick',[],'ytick',[]);
 set(con_imhandles, 'ButtonDownFcn', @con_ClickFcn);
 
-pic_grade = imread('button_grade.png');%±Æ¦æº]
+pic_grade = imread('button_grade.png');
 grade_imhandles = image(pic_grade,'parent',handles.axes_grade);
 set(handles.axes_grade,'xtick',[],'ytick',[]);
 set(grade_imhandles, 'ButtonDownFcn', @grade_ClickFcn);
@@ -143,13 +143,15 @@ set(m3_imh, 'ButtonDownFcn', @m3_ClickFcn);
 function con_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-[FileName,PathName] = uigetfile('*.sfg','Select the GO chess file');
-if FileName~=0
-    % open the record¡@and enter play mode
-    disp(FileName)
-else
-   warndlg('the file not exist or error','Error choosing file','modal')
+[FileName,PathName] = uigetfile('*.sgf','Select the GO chess file');
+if isequal(FileName,0)
+    return;
 end
+filePath = strcat(PathName,FileName);
+history = readSgf(filePath);
+game(history);
+close(handles.figure1);
+
 
 function grade_ClickFcn(hObject, eventdata)
 
@@ -164,13 +166,15 @@ delete(handles.axes_quit)
 function log_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
-[FileName,PathName] = uigetfile('*.sfg','Select the GO chess file');
-if FileName~=0
-    % open the record¡@and enter log mode
-    disp(FileName)
-else
-   warndlg('the file not exist or error','Error choosing file','modal')
+[FileName,PathName] = uigetfile('*.sgf','Select the GO chess file');
+if isequal(FileName,0)
+   return;
 end
+filePath = strcat(PathName,FileName);
+history = readSgf(filePath);
+checkhistory(history);
+close(handles.figure1);
+
 
 function quit_ClickFcn(hObject, eventdata)
 

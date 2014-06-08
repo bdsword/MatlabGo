@@ -26,5 +26,10 @@ function result = undo()
         end
     end
     setCurrentPlayer(tmp{end}(1,3));
+    if size(history,2)~=0
+        setLastStepChess([history{end}(1,1),history{end}(1,2)]);
+    else
+        setLastStepChess([0,0]);
+    end
     result = true;
 end

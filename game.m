@@ -18,9 +18,7 @@ function varargout = game(varargin)
 
 function game_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
-
 init
-
 set(gcf,'CurrentAxes',handles.axes1);
 imageData = imread('ChessBoard.jpg');
 imageHandle = image(imageData);
@@ -57,6 +55,10 @@ set(undoImhandles, 'ButtonDownFcn', @undo_ClickFcn);
 handles.chessBoard = imageHandle;
 guidata(hObject, handles);
 
+if nargin>3
+    continueGame(varargin,gca);
+end
+
 
 function varargout = game_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
@@ -73,6 +75,7 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
             msgbox('This position is not allowed to set chess!','modal');
             return;
         end
+        setLastStepChess([x,y]);
         resetEndChecker();
         writeToHistory([x,y,curPlayer]);
         takenChess = takeChess(x,y);
@@ -86,9 +89,8 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
     %=======game button image=====
 function pass_ClickFcn(hObject, eventdata)
 
-handles = guidata(hObject);
-% pass
- global tmpLogName;
+    handles = guidata(hObject);
+    global tmpLogName;
     pass();
     if isGameFinished()
         msgbox('Both player pass in succession. The game is finished.','modal');
@@ -112,15 +114,10 @@ handles = guidata(hObject);
     end
 
 function log_ClickFcn(hObject, eventdata)
-
-handles = guidata(hObject);
-% log
-writeHistoryToFileSgf();
+    writeHistoryToFileSgf();
 
 function undo_ClickFcn(hObject, eventdata)
-
     handles = guidata(hObject);
-    
     if undo()~=false
         updateChessBoard(handles.chessPaintBoard);
     end
