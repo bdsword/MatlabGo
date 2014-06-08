@@ -19,3 +19,6 @@ chessRadius=40;
 
 global chessBoardSize;
 chessBoardSize=19;
+
+global tmpLogName;
+tmpLogName = 'tmp-log-for-gnugo.log';
