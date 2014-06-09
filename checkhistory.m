@@ -56,20 +56,39 @@ set(nextImhandles, 'ButtonDownFcn', @next_ClickFcn);
 
 handles.chessBoard = imageHandle;
 guidata(hObject, handles);
-
+if nargin<=3
+     warndlg('The sgf content is not correct.');
+     startpage
+     close(handles.figure1);
+ end
+ global history;
+ history = varargin{1};
+ logPointer %init the logPointer
 
 function varargout = checkhistory_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
 
 
 function back_ClickFcn(hObject, eventdata)
+    global logPointer;
+    handles = guidata(hObject);
 
-handles = guidata(hObject);
+    if logPointer>0
+        logPointer=logPointer-1;
+        updateToLogPointer(handles.chessPaintBoard);
+    end
 
 
 function next_ClickFcn(hObject, eventdata)
+    global logPointer;
+    global history;
+    handles = guidata(hObject);
 
-handles = guidata(hObject);
+    if logPointer<size(history,2)
+        logPointer=logPointer+1;
+        updateToLogPointer(handles.chessPaintBoard);
+    end
+
 
 function backPage_ClickFcn(hObject, eventdata)
     handles = guidata(hObject);
