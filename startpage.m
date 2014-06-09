@@ -63,7 +63,7 @@ guidata(hObject, handles);
 % bg image
 pic_bg = imread('gamebg.png');
 image(pic_bg,'parent',handles.axes_bg)
-set(handles.axes_bg,'xtick',[],'ytick',[]);
+set(handles.axes_bg,'xtick',[],'ytick',[],'units','pixels','position',[0,0,610,490]);
  
 
 %--- four image button and set button----
@@ -77,7 +77,7 @@ con_imhandles = image(pic_con,'parent',handles.axes_con);
 set(handles.axes_con,'xtick',[],'ytick',[]);
 set(con_imhandles, 'ButtonDownFcn', @con_ClickFcn);
 
-pic_grade = imread('button_grade.png');
+pic_grade = imread('button_grade_no.png');
 grade_imhandles = image(pic_grade,'parent',handles.axes_grade);
 set(handles.axes_grade,'xtick',[],'ytick',[]);
 set(grade_imhandles, 'ButtonDownFcn', @grade_ClickFcn);
@@ -119,7 +119,7 @@ set(axesm1_h,'xtick',[],'ytick',[]);
 set(m1_imh, 'ButtonDownFcn', @m1_ClickFcn);
 
 axesm2_h = axes('Units','pixels','Position',[225 150 150 180])
-pic_m2 = imread('computer.png');
+pic_m2 = imread('computer_no.png');
 m2_imh = image(pic_m2,'parent',axesm2_h)
 set(axesm2_h,'xtick',[],'ytick',[]);
 set(m2_imh, 'ButtonDownFcn', @m2_ClickFcn);
