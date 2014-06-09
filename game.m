@@ -18,7 +18,7 @@ function varargout = game(varargin)
 
 function game_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.output = hObject;
-    init
+    init 
     set(handles.figure1,'CurrentAxes',handles.axes1);
     imageData = imread('ChessBoard.jpg');
     imageHandle = image(imageData);
@@ -68,6 +68,7 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
     cursorPoint = get(handles.chessPaintBoard, 'CurrentPoint');
     curX = cursorPoint(1,1);
     curY = cursorPoint(1,2);
+    fprintf('%f %f\n',curX,curY);
     [x,y] = coordinateConvert(curX,curY);
     if x>0 && y>0
         curPlayer = getCurrentPlayer();

@@ -7,7 +7,7 @@ origin = [99,87];
 
 global blocksWidth;
 %blocksWidth=[45.8585,47.7096];
-blocksWidth=[46,46];
+blocksWidth=[45.8585,47.7096];
 %99.7058,84.5599
 %925.1590,943.3341
 %45.8585,47.7096
