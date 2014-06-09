@@ -17,8 +17,13 @@ function varargout = practice(varargin)
     end
 
 function practice_OpeningFcn(hObject, eventdata, handles, varargin)
+    global blackButtonPress;
+    global whiteButtonPress;
     handles.output = hObject;
     init 
+    blackButtonPress = false;
+    whiteButtonPress= false;
+    
     set(handles.figure1,'CurrentAxes',handles.axes1);
     imageData = imread('ChessBoard.jpg');
     imageHandle = image(imageData);
@@ -50,6 +55,11 @@ function practice_OpeningFcn(hObject, eventdata, handles, varargin)
     whiteImhandles = image(picWhite,'parent',handles.axesWhite);
     set(handles.axesWhite,'xtick',[],'ytick',[]);
     set(whiteImhandles, 'ButtonDownFcn', @white_ClickFcn);
+    
+    picPlay = imread('play.png');
+    playImhandles = image(picPlay,'parent',handles.axesPlay);
+    set(handles.axesPlay,'xtick',[],'ytick',[]);
+    set(playImhandles, 'ButtonDownFcn', @play_ClickFcn);
     
     picPass = imread('pass.png');
     passImhandles = image(picPass,'parent',handles.axesPass);
@@ -83,10 +93,9 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
     cursorPoint = get(handles.chessPaintBoard, 'CurrentPoint');
     curX = cursorPoint(1,1);
     curY = cursorPoint(1,2);
-    fprintf('%f %f\n',curX,curY);
     [x,y] = coordinateConvert(curX,curY);
     if x>0 && y>0
-        curPlayer = getCurrentPlayer();
+        curPlayer = getPracticeChessColor();
         if setChess([x,y],curPlayer)==false
             msgbox('This position is not allowed to set chess!','modal');
             return;
@@ -101,21 +110,47 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
         updateChessBoard(handles.chessPaintBoard);
         nextTurn();
     end
-
+    
+function chessColor=getPracticeChessColor()
+    global blackButtonPress;
+    global whiteButtonPress;
+    if blackButtonPress==true
+        chessColor=1;
+    elseif whiteButtonPress==true;
+        chessColor=2;
+    else
+        chessColor=getCurrentPlayer();
+    end
+    setCurrentPlayer(chessColor);
     %=======practice button image=====
 function backPage_ClickFcn(hObject, eventdata)
     handles = guidata(hObject);
     close(gcf)
     startpage
     
-    function black_ClickFcn(hObject, eventdata)
+function black_ClickFcn(hObject, eventdata)
+    global blackButtonPress;
+    global whiteButtonPress;
+    whiteButtonPress=false;
+    blackButtonPress=true;
     handles = guidata(hObject);
+    
     %choose black
     
-    function white_ClickFcn(hObject, eventdata)
+function white_ClickFcn(hObject, eventdata)
+    global whiteButtonPress;
+    global blackButtonPress;
+    whiteButtonPress=true;
+    blackButtonPress=false;
     handles = guidata(hObject);
     %choose white
     
+function play_ClickFcn(hObject, eventdata)
+    global whiteButtonPress;
+    global blackButtonPress;
+    whiteButtonPress=false;
+    blackButtonPress=false;
+
 function pass_ClickFcn(hObject, eventdata)
 
     handles = guidata(hObject);

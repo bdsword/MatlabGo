@@ -180,20 +180,22 @@ function m1_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select player vs player mode
-game
 close(handles.figure1)
+game
+
 
 function m2_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select player vs com. mode
-game
 close(handles.figure1)
+game
 
 function m3_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select practice mode
-practice
 close(handles.figure1)
+practice
+
 %======================================
