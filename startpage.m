@@ -65,7 +65,7 @@ pic_bg = imread('gamebg.png');
 image(pic_bg,'parent',handles.axes_bg)
 set(handles.axes_bg,'xtick',[],'ytick',[],'units','pixels','position',[0,0,610,490]);
  
-
+set(handles.figure1,'name','Go!Go!Matlab! - Main Page');
 %--- four image button and set button----
 pic_start = imread('button_start.png');
 start_imhandles = image(pic_start,'parent',handles.axes_start);

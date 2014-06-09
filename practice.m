@@ -35,6 +35,8 @@ function practice_OpeningFcn(hObject, eventdata, handles, varargin)
     set(handles.chessPaintBoard,'color','none');
     axis square;
 
+    set(handles.figure1,'name','Go!Go!Matlab! - Practice Mode');
+    
     % bg image
     pic_bg = imread('gamebg.png');
     image(pic_bg,'parent',handles.axes_gmbg)

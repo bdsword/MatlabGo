@@ -29,7 +29,7 @@ function game_OpeningFcn(hObject, eventdata, handles, varargin)
     set(handles.chessPaintBoard,'xtick',[],'ytick',[]);
     set(handles.chessPaintBoard,'color','none');
     axis square;
-
+    set(handles.figure1,'name','Go!Go!Matlab! - Game Mode');
     % bg image
     pic_bg = imread('gamebg.png');
     image(pic_bg,'parent',handles.axes_gmbg)
