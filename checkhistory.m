@@ -38,6 +38,11 @@ image(pic_bg,'parent',handles.axes_gmbg)
 set(handles.axes_gmbg,'xtick',[],'ytick',[]);
 
 %--- four image button and set button----
+picBP = imread('back_page.png');
+BPImhandles = image(picBP,'parent',handles.axesBackp);
+set(handles.axesBackp,'xtick',[],'ytick',[]);
+set(BPImhandles, 'ButtonDownFcn', @backPage_ClickFcn);
+    
 picBack = imread('back.png');
 backImhandles = image(picBack,'parent',handles.axesBack);
 set(handles.axesBack,'xtick',[],'ytick',[]);
@@ -52,36 +57,24 @@ set(nextImhandles, 'ButtonDownFcn', @next_ClickFcn);
 handles.chessBoard = imageHandle;
 guidata(hObject, handles);
 
-if nargin<=3
-    warndlg('The sgf content is not correct.');
-    startpage
-    close(handles.figure1);
-end
-global history;
-history = varargin{1};
-logPointer %init the logPointer
 
 function varargout = checkhistory_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
 
 
 function back_ClickFcn(hObject, eventdata)
-    handles = guidata(hObject);
-    global logPointer;
-    if logPointer>0
-        logPointer=logPointer-1;
-        updateToLogPointer(handles.chessPaintBoard);
-    end
-    
-function next_ClickFcn(hObject, eventdata)
-    handles = guidata(hObject);
-    global logPointer;
-    global history;
-    if logPointer<size(history,2)
-        logPointer=logPointer+1;
-        updateToLogPointer(handles.chessPaintBoard);
-    end
 
+handles = guidata(hObject);
+
+
+function next_ClickFcn(hObject, eventdata)
+
+handles = guidata(hObject);
+
+function backPage_ClickFcn(hObject, eventdata)
+    handles = guidata(hObject);
+    close(gcf)
+    startpage
 %======================================
 
 

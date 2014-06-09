@@ -194,6 +194,6 @@ function m3_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select practice mode
-game
+practice
 close(handles.figure1)
 %======================================

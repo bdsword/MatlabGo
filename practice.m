@@ -1,9 +1,9 @@
-function varargout = game(varargin)
+function varargout = practice(varargin)
     gui_Singleton = 1;
     gui_State = struct('gui_Name',       mfilename, ...
                        'gui_Singleton',  gui_Singleton, ...
-                       'gui_OpeningFcn', @game_OpeningFcn, ...
-                       'gui_OutputFcn',  @game_OutputFcn, ...
+                       'gui_OpeningFcn', @practice_OpeningFcn, ...
+                       'gui_OutputFcn',  @practice_OutputFcn, ...
                        'gui_LayoutFcn',  [] , ...
                        'gui_Callback',   []);
     if nargin && ischar(varargin{1})
@@ -16,7 +16,7 @@ function varargout = game(varargin)
         gui_mainfcn(gui_State, varargin{:});
     end
 
-function game_OpeningFcn(hObject, eventdata, handles, varargin)
+function practice_OpeningFcn(hObject, eventdata, handles, varargin)
     handles.output = hObject;
     init 
     set(handles.figure1,'CurrentAxes',handles.axes1);
@@ -40,6 +40,16 @@ function game_OpeningFcn(hObject, eventdata, handles, varargin)
     BPImhandles = image(picBP,'parent',handles.axesBackp);
     set(handles.axesBackp,'xtick',[],'ytick',[]);
     set(BPImhandles, 'ButtonDownFcn', @backPage_ClickFcn);
+    
+    picBlack = imread('black.png');
+    blackImhandles = image(picBlack,'parent',handles.axesBlack);
+    set(handles.axesBlack,'xtick',[],'ytick',[]);
+    set(blackImhandles, 'ButtonDownFcn', @black_ClickFcn);
+    
+    picWhite = imread('white.png');
+    whiteImhandles = image(picWhite,'parent',handles.axesWhite);
+    set(handles.axesWhite,'xtick',[],'ytick',[]);
+    set(whiteImhandles, 'ButtonDownFcn', @white_ClickFcn);
     
     picPass = imread('pass.png');
     passImhandles = image(picPass,'parent',handles.axesPass);
@@ -65,7 +75,7 @@ function game_OpeningFcn(hObject, eventdata, handles, varargin)
     end
 
 
-function varargout = game_OutputFcn(hObject, eventdata, handles) 
+function varargout = practice_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
 
     
@@ -92,11 +102,19 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
         nextTurn();
     end
 
-    %=======game button image=====
+    %=======practice button image=====
 function backPage_ClickFcn(hObject, eventdata)
     handles = guidata(hObject);
     close(gcf)
     startpage
+    
+    function black_ClickFcn(hObject, eventdata)
+    handles = guidata(hObject);
+    %choose black
+    
+    function white_ClickFcn(hObject, eventdata)
+    handles = guidata(hObject);
+    %choose white
     
 function pass_ClickFcn(hObject, eventdata)
 
