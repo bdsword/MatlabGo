@@ -35,7 +35,7 @@ axis square;
 % bg image
 pic_bg = imread('gamebg.png');
 image(pic_bg,'parent',handles.axes_gmbg)
-set(handles.axes_gmbg,'xtick',[],'ytick',[]);
+set(handles.axes_gmbg,'xtick',[],'ytick',[],'units','pixels','position',[0,0,950,690]);
 
 %--- four image button and set button----
 picBP = imread('back_page.png');
