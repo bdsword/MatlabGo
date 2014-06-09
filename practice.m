@@ -110,6 +110,7 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
             unsetChess(takenChess);
         end
         updateChessBoard(handles.chessPaintBoard);
+        writeToLogField(handles.chessLogField);
         nextTurn();
     end
     
@@ -187,5 +188,5 @@ function undo_ClickFcn(hObject, eventdata)
     if undo()~=false
         updateChessBoard(handles.chessPaintBoard);
     end
-
+    writeToLogField(handles.chessLogField);
 %======================================

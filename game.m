@@ -132,6 +132,7 @@ function undo_ClickFcn(hObject, eventdata)
     if undo()~=false
         updateChessBoard(handles.chessPaintBoard);
     end
+    writeToLogField(handles.chessLogField);
 
 %======================================
 
