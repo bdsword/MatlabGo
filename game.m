@@ -88,6 +88,7 @@ function chessPaintBoard_ButtonDownFcn(hObject, eventdata, handles)
             unsetChess(takenChess);
         end
         updateChessBoard(handles.chessPaintBoard);
+        writeToLogField(handles.chessLogField);
         nextTurn();
     end
 
@@ -136,18 +137,18 @@ function undo_ClickFcn(hObject, eventdata)
 
 
 
-function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function chessLogField_Callback(hObject, eventdata, handles)
+% hObject    handle to chessLogField (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+% Hints: get(hObject,'String') returns contents of chessLogField as text
+%        str2double(get(hObject,'String')) returns contents of chessLogField as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function chessLogField_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to chessLogField (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
