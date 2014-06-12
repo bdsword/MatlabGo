@@ -106,27 +106,27 @@ varargout{1} = handles.output;
 %==========click function of four image button=================
 function start_ClickFcn(hObject, eventdata)
 handles = guidata(hObject);
-delete(handles.axes_start)
-delete(handles.axes_con)
-delete(handles.axes_grade)
-delete(handles.axes_log)
-delete(handles.axes_quit)
+delete(handles.axes_start);
+delete(handles.axes_con);
+delete(handles.axes_grade);
+delete(handles.axes_log);
+delete(handles.axes_quit);
 %-------choose play mode-------
-axesm1_h = axes('Units','pixels','Position',[40 150 150 180])
+axesm1_h = axes('Units','pixels','Position',[40 150 150 180]);
 pic_m1 = imread('two player.png');
 m1_imh = image(pic_m1,'parent',axesm1_h);
 set(axesm1_h,'xtick',[],'ytick',[]);
 set(m1_imh, 'ButtonDownFcn', @m1_ClickFcn);
 
-axesm2_h = axes('Units','pixels','Position',[225 150 150 180])
+axesm2_h = axes('Units','pixels','Position',[225 150 150 180]);
 pic_m2 = imread('computer_no.png');
-m2_imh = image(pic_m2,'parent',axesm2_h)
+m2_imh = image(pic_m2,'parent',axesm2_h);
 set(axesm2_h,'xtick',[],'ytick',[]);
 set(m2_imh, 'ButtonDownFcn', @m2_ClickFcn);
 
-axesm3_h = axes('Units','pixels','Position',[410 150 150 180])
+axesm3_h = axes('Units','pixels','Position',[410 150 150 180]);
 pic_m3 = imread('practice.png');
-m3_imh = image(pic_m3,'parent',axesm3_h)
+m3_imh = image(pic_m3,'parent',axesm3_h);
 set(axesm3_h,'xtick',[],'ytick',[]);
 set(m3_imh, 'ButtonDownFcn', @m3_ClickFcn);
 %-------------------------------
@@ -149,11 +149,11 @@ function grade_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 %imshow('002.jpg','parent',handles.axes_log)
-delete(handles.axes_start)
-delete(handles.axes_con)
-delete(handles.axes_grade)
-delete(handles.axes_log)
-delete(handles.axes_quit)
+delete(handles.axes_start);
+delete(handles.axes_con);
+delete(handles.axes_grade);
+delete(handles.axes_log);
+delete(handles.axes_quit);
 
 function log_ClickFcn(hObject, eventdata)
 
@@ -180,7 +180,7 @@ function m1_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select player vs player mode
-close(handles.figure1)
+close(handles.figure1);
 game
 
 
@@ -188,14 +188,14 @@ function m2_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select player vs com. mode
-close(handles.figure1)
+close(handles.figure1);
 game
 
 function m3_ClickFcn(hObject, eventdata)
 
 handles = guidata(hObject);
 % select practice mode
-close(handles.figure1)
+close(handles.figure1);
 practice
 
 %======================================

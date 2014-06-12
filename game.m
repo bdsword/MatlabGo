@@ -63,7 +63,7 @@ function game_OpeningFcn(hObject, eventdata, handles, varargin)
     if nargin>3
         continueGame(varargin,gca);
     end
-
+    nextTurn();
 
 function varargout = game_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
