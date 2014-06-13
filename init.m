@@ -1,6 +1,6 @@
+settings
 chessBoard
 curPlayer
-settings
 history
 ko
 lastSetChess
